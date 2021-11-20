@@ -6,14 +6,13 @@ class HomePage extends StatelessWidget {
 
   const HomePage({ Key? key }) : super(key: key);
 
+   
+
    @override
    Widget build(BuildContext context) {
 
      final telefoneEC = TextEditingController();
-     final mensagemEC = TextEditingController();
 
-     final tele = telefoneEC.text.toString();
-     final mensas = mensagemEC.text.toString();
 
 
        return Scaffold(
@@ -34,17 +33,8 @@ class HomePage extends StatelessWidget {
                       labelText: 'Digite o numero',
                     )),
                     SizedBox(height: 20,),
-                    TextField(
-                      controller: mensagemEC,
-                     keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.messenger),
-                      border: OutlineInputBorder(),
-                      labelText: 'Deseja enviar alguma mensagem (opcional)',
-                    )),
-                    SizedBox(height: 20,),
                     ElevatedButton(
-                      onPressed: () => abrirWhatsApp(tele, mens: mensas), 
+                      onPressed: abrirWhatsApp, 
                       child: Text('Enviar'))
                  ],
                ),
@@ -53,15 +43,20 @@ class HomePage extends StatelessWidget {
        );
   }
 
-  Future<dynamic> abrirWhatsApp(String tel, {String mens = ''}) async {
-  var whatsappUrl = "whatsapp://send?phone=+55$tel&text=$mens ?";
+  Future<void> abrirWhatsApp() async {
+  var whatsappUrl = Uri.parse("https://api.whatsapp.com/send?phone=5588997277737").toString() ;
 
+  await canLaunch(whatsappUrl) ? launch(whatsappUrl) : print('ERRO NA URL WHATSAPP');
+print('ERRO NA FUNÇÃO');
   if (await canLaunch(whatsappUrl)) {
     await launch(whatsappUrl);
   } else {
     throw 'Could not launch $whatsappUrl';
   }
 }
+
+
+
 
 
 }
