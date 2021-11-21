@@ -1,3 +1,4 @@
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
 
-     final telefoneEC = TextEditingController();
+     final telefoneEC = MaskedTextController(mask: '(00)00000-0000');
 
 
 
