@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.whats_agora">
    <application
-        android:label="whats_agora"
+        android:label="Whats Agora"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
