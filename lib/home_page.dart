@@ -16,26 +16,38 @@ class HomePage extends StatelessWidget {
 
 
        return Scaffold(
-           appBar: AppBar(title: const Text('Whats Agora'),),
+         backgroundColor: Colors.teal[50],
            body: SingleChildScrollView(
              child: Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 80),
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.stretch,
                  children: [
-                   
+                   Image.asset('assets/logo-whats-agora.png',
+                   width: 100,
+                   height: 150,),
+                   SizedBox(height: 30,),
                    TextField(
                      controller: telefoneEC,
                      keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone),
                       border: OutlineInputBorder(),
-                      labelText: 'Digite o numero',
+                      labelText: 'Digite o numero com o DDD',
                     )),
                     SizedBox(height: 20,),
                     ElevatedButton(
-                      onPressed: abrirWhatsApp, 
-                      child: Text('Enviar'))
+                      onPressed: () => abrirWhatsApp(telefoneEC.text), 
+                      child: Text('Enviar'),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        primary: Colors.greenAccent[700],
+                        elevation: 10
+                      )
+                      ),
+                      
+                    SizedBox(height: 40,),
+                    Text('Coloque o numero desejado da seguinte forma: Ex.: 88912345678 não coloque traços, pontos, parenteses ou qualquer outro simbolo. ')
                  ],
                ),
              ),
@@ -43,11 +55,10 @@ class HomePage extends StatelessWidget {
        );
   }
 
-  Future<void> abrirWhatsApp() async {
-  var whatsappUrl = Uri.parse("https://api.whatsapp.com/send?phone=5588997277737").toString() ;
+  Future<void> abrirWhatsApp(String fone) async {
+  var whatsappUrl = Uri.parse("https://api.whatsapp.com/send?phone=55$fone").toString() ;
 
   await canLaunch(whatsappUrl) ? launch(whatsappUrl) : print('ERRO NA URL WHATSAPP');
-print('ERRO NA FUNÇÃO');
   if (await canLaunch(whatsappUrl)) {
     await launch(whatsappUrl);
   } else {
