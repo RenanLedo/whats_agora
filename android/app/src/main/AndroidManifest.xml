@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.whats_agora">
+    package="br.com.renanledopizzasledo.whats_agora">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Whats Agora"
         android:icon="@mipmap/ic_launcher">
